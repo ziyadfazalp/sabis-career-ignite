@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-gray-900">
       <Hero />
-      <EmpathyGrid />
       <Services />
+      <EmpathyGrid />
       <About />
       <Footer />
     </div>
