@@ -83,7 +83,7 @@ const Hero = () => {
             {/* Modal Body - Timeline (Grid Redesign) */}
             <div className="p-6 md:p-8 flex-1 overflow-y-auto">
               <div className="relative max-w-4xl mx-auto">
-                
+
                 {/* Desktop Center Line */}
                 <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-0.5 bg-stone-200 -translate-x-1/2 z-0"></div>
                 {/* Mobile Left Line */}
@@ -111,11 +111,11 @@ const Hero = () => {
 
                   {/* Stage 2: Right Column, Top Row */}
                   <div className="relative flex items-center md:col-start-2 md:row-start-1">
-                     {/* Icon */}
+                    {/* Icon */}
                     <div className="absolute left-0 md:-left-8 md:-translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-amber-100 text-amber-600 shadow z-20">
                       <Video className="w-5 h-5" />
                     </div>
-                     {/* Card */}
+                    {/* Card */}
                     <div className="ml-16 md:ml-0 bg-white p-5 rounded-2xl border border-stone-100 shadow-sm w-full">
                       <div className="text-xs font-bold uppercase tracking-wider text-amber-600 mb-1">Stage 2</div>
                       <h4 className="text-lg font-bold text-stone-900 mb-2">Personalized Counseling</h4>
@@ -127,11 +127,11 @@ const Hero = () => {
 
                   {/* Stage 3: Right Column, Bottom Row */}
                   <div className="relative flex items-center md:col-start-2 md:row-start-2">
-                     {/* Icon */}
+                    {/* Icon */}
                     <div className="absolute left-0 md:-left-8 md:-translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-emerald-100 text-emerald-600 shadow z-20">
                       <Map className="w-5 h-5" />
                     </div>
-                     {/* Card */}
+                    {/* Card */}
                     <div className="ml-16 md:ml-0 bg-white p-5 rounded-2xl border border-stone-100 shadow-sm w-full">
                       <div className="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-1">Stage 3</div>
                       <h4 className="text-lg font-bold text-stone-900 mb-2">Roadmap & Follow-Up</h4>

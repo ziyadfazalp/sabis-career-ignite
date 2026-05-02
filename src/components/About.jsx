@@ -36,8 +36,8 @@ const About = () => {
 
           <div className="space-y-5 text-lg text-stone-600 leading-relaxed">
             <p>With an M.Sc in Psychology and a CIGI Diploma in Career Guidance & Counselling—where she graduated as the <strong>First Rank holder</strong>—Sabitha has dedicated over 15 years to guiding more than <span className="font-semibold text-stone-900 bg-amber-100/50 px-1 rounded">3,500 adolescents</span>.</p>
-            <p>Before establishing her private practice, she built a formidable foundation on the frontlines of education and state-led youth development. She served as a Senior Career Counsellor at CIGI for four years, and spent five years as a Skill Development Executive for ASAP Kerala at the renowned Nadakkavu Girls HSS. This is further backed by her hands-on experience as a Teacher and School Psychologist at prominent local institutions like Apex School, Hilltop Public School, and MES School.</p>
-            <p>This unmatched, ground-level experience ensures her empathetic, science-backed approach isn't just theoretical. She deeply understands the real, day-to-day academic pressures and emotional communication gaps families face, empowering students to confidently step into their ideal future.</p>
+            <p>Before establishing her private practice, she built a formidable foundation on the frontlines of education and state-led youth development. She served as a Senior Career Counsellor at CIGI for four years, and spent five years as a Skill Development Executive for ASAP Kerala at the renowned Nadakkavu Girls HSS. This is further backed by her hands-on experience as a Teacher and School Psychologist at prominent local institutions like Apex School, Hilltop Public School, and MES School, Pavangad.</p>
+            <p>This unmatched, ground-level experience ensures that her empathetic, science-backed approach isn't just theoretical. She deeply understands the real, day-to-day academic pressures and emotional communication gaps families face, empowering students to confidently step into their ideal future.</p>
           </div>
 
           {/* Testimonial Block */}
