@@ -6,6 +6,7 @@ const ClarityApp = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [formData, setFormData] = useState({ name: '', whatsapp: '' });
+  const [errors, setErrors] = useState({});
 
   // Ref for auto-scrolling
   const appTopRef = useRef(null);
@@ -135,9 +136,52 @@ const ClarityApp = () => {
     }
   };
 
-  const handleLeadSubmit = (e) => {
+  const handleLeadSubmit = async (e) => {
     e.preventDefault();
+
+    const cleanName = formData.name.trim();
+    const nameRegex = /^[A-Za-z\s]{3,}$/;
+    const cleanWhatsapp = formData.whatsapp.replace(/[\s\-+]/g, '');
+    const whatsappRegex = /^\d{7,15}$/;
+
+    let newErrors = {};
+    if (!nameRegex.test(cleanName)) {
+      newErrors.name = "Please enter a valid name (letters only, min 3 characters)";
+    }
+    if (!whatsappRegex.test(cleanWhatsapp)) {
+      newErrors.whatsapp = "Please enter a valid WhatsApp number (7–15 digits)";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
+    let resultLabel = "Needs Guidance / Critical Disconnect";
+    if (score >= 15) {
+      resultLabel = "High Clarity / High Alignment";
+    } else if (score >= 10) {
+      resultLabel = "Some Confusion / Moderate Friction";
+    }
+
     setStep('results');
+
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbzQxdsz8Miwiawqe6nyW0bJeQiQapNRNJNE22MgIHGhIU98GcJS6PTTASaILCnUQ9Mu/exec", {
+        method: "POST",
+        body: JSON.stringify({
+          name: cleanName,
+          whatsapp: cleanWhatsapp,
+          role: role,
+          score: score,
+          result: resultLabel
+        })
+      });
+    } catch (error) {
+      console.error("Webhook failed:", error);
+    }
   };
 
   const resetQuiz = () => {
@@ -146,6 +190,7 @@ const ClarityApp = () => {
     setCurrentQuestionIndex(0);
     setScore(0);
     setFormData({ name: '', whatsapp: '' });
+    setErrors({});
   };
 
   const renderResult = () => {
@@ -257,22 +302,28 @@ const ClarityApp = () => {
           <h3 className="text-2xl font-bold text-gray-900">Your custom clarity score is ready!</h3>
           <p className="text-gray-600">Where should we send your results?</p>
           <form onSubmit={handleLeadSubmit} className="space-y-4 pt-4">
-            <input
-              type="text"
-              placeholder="Your Name"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-            />
-            <input
-              type="tel"
-              placeholder="WhatsApp Number"
-              required
-              value={formData.whatsapp}
-              onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-              className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-            />
+            <div className="text-left">
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              />
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+            </div>
+            <div className="text-left">
+              <input
+                type="tel"
+                placeholder="WhatsApp Number"
+                required
+                value={formData.whatsapp}
+                onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+              />
+              {errors.whatsapp && <p className="text-red-500 text-sm mt-1">{errors.whatsapp}</p>}
+            </div>
             <button type="submit" className="w-full py-4 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition">
               See My Results
             </button>
